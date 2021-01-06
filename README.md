@@ -1,27 +1,16 @@
 # DivElementTest
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.7.
+This application was created in angular and it's main task is display a timeline of commits from a user repository
 
-## Development server
+## Instalation and setup
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+1. You must have nodejs installed in your enviroment.
+2. You must have angularCli installed in your envioroment.
+3. You must have a github account:
+   1. _In your github account you have to generate a *token*, this token will allow you makes the request to the github API_(if you dont know how gets this token you can click on the link:_https://docs.github.com/es/free-pro-team@latest/github/authenticating-to-github/creating-a-personal-access-token_ )
 
-## Code scaffolding
+### Used Libraries
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+- RXJS
+- NGRX
+- Bootstrap

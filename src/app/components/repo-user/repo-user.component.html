@@ -26,7 +26,7 @@
         (click)="GotoTimeLine(repo.commits_url)"
       >
         <div class="card-header">
-          <h5>{{ repo.name }}</h5>
+          <h5>{{ repo.name| uppercase }}</h5>
         </div>
         <div class="card-body">
           <p class="card-title">{{ repo.description | descriptionRepo }}</p>
