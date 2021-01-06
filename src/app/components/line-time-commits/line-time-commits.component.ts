@@ -35,4 +35,8 @@ export class LineTimeCommitsComponent implements OnInit {
   ngOnDestroy(): void {
     this.commitSubs$.unsubscribe();
   }
+
+  trackByFn(index, commit) {
+    return index;
+  }
 }

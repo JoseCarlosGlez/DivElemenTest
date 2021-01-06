@@ -62,6 +62,10 @@ export class SearchUserComponent implements OnInit {
     this._store.dispatch(setUserName({ UserGithub: SetUser }));
   }
 
+  trackByFn(index, commit) {
+    return index;
+  }
+
   ngOnDestroy(): void {
     this.valueChangesSubscription$.unsubscribe();
   }

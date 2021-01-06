@@ -22,11 +22,11 @@
     <div class="card-columns m fadeIn mt-4" *ngIf="reposList?.length > 0">
       <div
         class="card text-dark bg-light mb-3 CursorHand"
-        *ngFor="let repo of reposList"
+        *ngFor="let repo of reposList; trackBy: trackByFn"
         (click)="GotoTimeLine(repo.commits_url)"
       >
         <div class="card-header">
-          <h5>{{ repo.name| uppercase }}</h5>
+          <h5>{{ repo.name | uppercase }}</h5>
         </div>
         <div class="card-body">
           <p class="card-title">{{ repo.description | descriptionRepo }}</p>

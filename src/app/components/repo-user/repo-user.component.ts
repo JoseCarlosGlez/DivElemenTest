@@ -50,6 +50,9 @@ export class RepoUserComponent implements OnDestroy {
   GoToSearchUser() {
     this._router.navigate(['']);
   }
+  trackByFn(index, commit) {
+    return index;
+  }
 
   GotoTimeLine(git_commits_url: string) {
     this._gs
@@ -57,7 +60,5 @@ export class RepoUserComponent implements OnDestroy {
       .subscribe((Commits: ICommitInformation[]) => {
         this._store.dispatch(setCommit({ CommitRepo: Commits }));
       });
-
-    
   }
 }
