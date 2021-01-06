@@ -1,21 +1,23 @@
-<div class="container">
-  <div class="jumbotron">
-    <h1 class="text-center">TimeLine</h1>
-    <div class="timeline">
-      <ul>
-        <li *ngFor="let commit of commits">
-          <div class="content">
-            <h3>{{ commit.author.name }}</h3>
-            <p>
-              {{ commit.message }}
-            </p>
-          </div>
-          <div class="time">
-            <p>{{ commit.author.date | date }}</p>
-          </div>
-        </li>
-      </ul>
-      <div style="clear: both"></div>
+<div class="pagecontainer">
+  <div class="container">
+    <div class="jumbotron">
+      <h1 class="text-center">TimeLine</h1>
+      <div class="timeline">
+        <ul>
+          <li *ngFor="let commit of commits">
+            <div class="content">
+              <h3>{{ commit.author.name }}</h3>
+              <p>
+                {{ commit.message }}
+              </p>
+            </div>
+            <div class="time">
+              <p>{{ commit.author.date | date }}</p>
+            </div>
+          </li>
+        </ul>
+        <div style="clear: both"></div>
+      </div>
     </div>
   </div>
 </div>

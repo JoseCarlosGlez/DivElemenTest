@@ -32,10 +32,13 @@
   font-family: "Roboto Condensed", sans-serif;
 }
 
+.growBackground{
+  height: 100vh;
+}
+
 .pageContainer {
   background-color: #02010f;
   width: 100vw;
-  height: inherit;
   top: 0;
   left: 0;
   position: absolute;

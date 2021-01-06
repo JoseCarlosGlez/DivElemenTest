@@ -1,4 +1,7 @@
-<div class="pageContainer">
+<div
+  class="pageContainer"
+  [ngClass]="{ growBackground: reposList?.length == 0 }"
+>
   <div class="container">
     <div class="userBar mt-2">
       <span (click)="GoToSearchUser()" class="BgArrowLeft CursorHand">
