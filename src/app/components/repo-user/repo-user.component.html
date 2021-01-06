@@ -1,4 +1,4 @@
-<div class="container" >
+<div class="container">
   <div class="userBar mt-2">
     <span (click)="GoToSearchUser()" class="BgArrowLeft CursorHand">
       <i class="fas fa-arrow-left"></i>
@@ -20,6 +20,7 @@
       class="card text-white bg-secondary mb-3 CursorHand"
       style="max-width: 18rem"
       *ngFor="let repo of reposList"
+      (click)="GotoTimeLine(repo.git_commits_url)"
     >
       <div class="card-header">{{ repo.name }}</div>
       <div class="card-body">

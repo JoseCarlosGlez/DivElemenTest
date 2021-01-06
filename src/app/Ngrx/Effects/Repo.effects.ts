@@ -17,7 +17,7 @@ export class RepoEffects {
     private _router: Router
   ) {}
 
-  UploadRepos$ = createEffect(() =>
+  SetRepos$ = createEffect(() =>
     this.actions$.pipe(
       ofType(setUserName),
       mergeMap(({ UserGithub }) =>

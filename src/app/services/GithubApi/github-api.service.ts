@@ -21,8 +21,8 @@ export class GithubApiService {
   }
 
   public GetReposFromGithub(repo_url: string) {
-    let newRepoUrl: string[] = repo_url.split('{');
-    repo_url = newRepoUrl[0];
+    repo_url = repo_url.split('{')[0];
+
     const params = new HttpParams().set('per_page', '30');
     return this._http.get(repo_url, { params }).pipe(
       map((values: RepoInformation[]) => {
@@ -32,7 +32,7 @@ export class GithubApiService {
             RepoInformation.FromGithub(
               repo.name,
               repo.description,
-              repo.git_commits_url
+              repo.commits_url
             )
           );
         });
@@ -40,5 +40,11 @@ export class GithubApiService {
         return arraysRepos;
       })
     );
+  }
+
+  public GetCommitsFromGithub(git_commits_url: string) {
+    git_commits_url = git_commits_url.split('{')[0];
+
+    return this._http.get(git_commits_url);
   }
 }
