@@ -3,12 +3,17 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { forkJoin } from 'rxjs';
 import {
+  debounceTime,
+  delay,
   last,
   map,
+  mergeAll,
   mergeMap,
   shareReplay,
   skip,
+  switchMap,
   takeLast,
+  tap,
 } from 'rxjs/operators';
 import { RepoInformation } from 'src/app/Models/Repo.model';
 import { UserInformation } from 'src/app/Models/User.model';
@@ -22,20 +27,30 @@ import { AppState } from 'src/app/Ngrx/app.reducers';
 })
 export class RepoUserComponent implements OnDestroy {
   public reposList: RepoInformation[] = undefined;
-  public  user:UserInformation=undefined;
+  public user: UserInformation = undefined;
+  public loading: boolean;
   constructor(private _store: Store<AppState>, private _router: Router) {
-    this._store
-      .select('RI')
+    this.getstore();
+  }
+
+  getstore() {
+    return this._store
+      .select('RI', 'repos')
       .pipe(
-        map((repos) => {
-          this.reposList = repos;
-        }),
-        mergeMap(() => this._store.select('GI').pipe(map(user=>this.user=user)))
+        map((repo: any) => (this.reposList = repo)),
+        tap(console.log),
+        switchMap(() =>
+          this._store.select('GI').pipe(map((user) => (this.user = user)))
+        )
       )
       .subscribe();
   }
 
   ngOnDestroy(): void {
     this._store.dispatch(unsetRepoUser());
+  }
+
+  GoToSearchUser() {
+    this._router.navigate(['']);
   }
 }

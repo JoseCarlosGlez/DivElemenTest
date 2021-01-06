@@ -23,7 +23,8 @@ export class GithubApiService {
   public GetReposFromGithub(repo_url: string) {
     let newRepoUrl: string[] = repo_url.split('{');
     repo_url = newRepoUrl[0];
-    return this._http.get(repo_url).pipe(
+    const params = new HttpParams().set('per_page', '30');
+    return this._http.get(repo_url, { params }).pipe(
       map((values: RepoInformation[]) => {
         let arraysRepos: RepoInformation[] = [];
         values.forEach((repo) => {

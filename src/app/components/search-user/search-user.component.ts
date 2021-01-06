@@ -59,7 +59,6 @@ export class SearchUserComponent implements OnInit {
   GotoRepo(repoUrl: string, login: string, avatar: string) {
     const SetUser = new UserInformation(avatar, login, repoUrl);
     this._store.dispatch(setUserName({ UserGithub: SetUser }));
-    this._router.navigate(['repo']);
   }
 
   ngOnDestroy(): void {

@@ -1,10 +1,10 @@
-<div class="container">
+<div class="container" >
   <div class="userBar mt-2">
-    <span class="BgArrowLeft CursorHand"
-      ><i class="fas fa-arrow-left"></i
-    ></span>
-    <img class="rounded-circle"  [src]="user.avatar_url" alt="asdasda" />
-    <span class="userName">{{user.login}}</span>
+    <span (click)="GoToSearchUser()" class="BgArrowLeft CursorHand">
+      <i class="fas fa-arrow-left"></i>
+    </span>
+    <img class="rounded-circle" [src]="user.avatar_url" alt="asdasda" />
+    <span class="userName">{{ user.login }}</span>
   </div>
 
   <div
@@ -24,7 +24,6 @@
       <div class="card-header">{{ repo.name }}</div>
       <div class="card-body">
         <h5 class="card-title">{{ repo.description | descriptionRepo }}</h5>
-    
       </div>
     </div>
   </div>
