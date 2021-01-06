@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { map } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
+import { map, mergeMap, switchMap } from 'rxjs/operators';
 import { ICommitInformation } from 'src/app/interfaces/commitInformation.interface';
+import { IsLoaded, IsLoading } from 'src/app/Ngrx/Actions/loading.actions';
 import { AppState } from 'src/app/Ngrx/app.reducers';
 
 @Component({
@@ -11,12 +13,13 @@ import { AppState } from 'src/app/Ngrx/app.reducers';
 })
 export class LineTimeCommitsComponent implements OnInit {
   commits: ICommitInformation[] = [];
+  commitSubs$: Subscription;
   constructor(public _store: Store<AppState>) {
     this.getStore();
   }
 
   getStore() {
-    this._store
+    this.commitSubs$ = this._store
       .select('CI', 'commits')
       .pipe(
         map((commits) => {
@@ -28,4 +31,8 @@ export class LineTimeCommitsComponent implements OnInit {
   }
 
   ngOnInit(): void {}
+
+  ngOnDestroy(): void {
+    this.commitSubs$.unsubscribe();
+  }
 }

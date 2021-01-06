@@ -1,11 +1,13 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { EMPTY, Subscription } from 'rxjs';
 import { isEmpty, map, tap } from 'rxjs/operators';
 import { ICommitInformation } from 'src/app/interfaces/commitInformation.interface';
 import { CommitInformation } from 'src/app/Models/Commit.model';
 import { RepoInformation } from 'src/app/Models/Repo.model';
+import { IsLoaded, IsLoading } from 'src/app/Ngrx/Actions/loading.actions';
 import { AppState } from 'src/app/Ngrx/app.reducers';
 import { commitInformationReducer } from 'src/app/Ngrx/Reducers/commitsInformation.reducer';
 
@@ -13,7 +15,11 @@ import { commitInformationReducer } from 'src/app/Ngrx/Reducers/commitsInformati
   providedIn: 'root',
 })
 export class GithubApiService {
-  constructor(private _http: HttpClient, private _store: Store<AppState>) {}
+  constructor(
+    private _router: Router,
+    private _http: HttpClient,
+    private _store: Store<AppState>
+  ) {}
 
   public GetUsersFromGithub(username: string) {
     if (username !== null && username !== '') {
@@ -50,6 +56,8 @@ export class GithubApiService {
 
     return this._http.get(git_commits_url).pipe(
       map((CommitsGithub: any[]) => {
+        this._store.dispatch(IsLoading());
+
         let Commits: ICommitInformation[] = [];
         CommitsGithub.forEach((commit) => {
           Commits.push(
@@ -59,6 +67,8 @@ export class GithubApiService {
             )
           );
         });
+        this._store.dispatch(IsLoaded());
+        this._router.navigate(['commit']);
         return Commits;
       })
     );

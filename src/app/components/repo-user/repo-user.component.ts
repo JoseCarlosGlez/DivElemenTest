@@ -58,6 +58,6 @@ export class RepoUserComponent implements OnDestroy {
         this._store.dispatch(setCommit({ CommitRepo: Commits }));
       });
 
-    this._router.navigate(['commit']);
+    
   }
 }

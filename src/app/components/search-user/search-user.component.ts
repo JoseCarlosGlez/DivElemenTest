@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { of } from 'rxjs';
+import { of, Subscription } from 'rxjs';
 import {
   catchError,
   debounceTime,
@@ -31,10 +31,11 @@ export class SearchUserComponent implements OnInit {
 
   public user: FormControl;
   public UserInformation: IUserInformation[] = [];
+  public valueChangesSubscription$: Subscription;
 
   ngOnInit(): void {
     this.user = new FormControl('');
-    this.user.valueChanges
+    this.valueChangesSubscription$ = this.user.valueChanges
       .pipe(
         debounceTime(1000),
         switchMap((value) =>
@@ -62,7 +63,6 @@ export class SearchUserComponent implements OnInit {
   }
 
   ngOnDestroy(): void {
-    //Called once, before the instance is destroyed.
-    //Add 'implements OnDestroy' to the class.
+    this.valueChangesSubscription$.unsubscribe();
   }
 }

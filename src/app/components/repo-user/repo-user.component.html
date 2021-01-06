@@ -1,30 +1,33 @@
-<div class="container">
-  <div class="userBar mt-2">
-    <span (click)="GoToSearchUser()" class="BgArrowLeft CursorHand">
-      <i class="fas fa-arrow-left"></i>
-    </span>
-    <img class="rounded-circle" [src]="user.avatar_url" alt="asdasda" />
-    <span class="userName">{{ user.login }}</span>
-  </div>
+<div class="pageContainer">
+  <div class="container">
+    <div class="userBar mt-2">
+      <span (click)="GoToSearchUser()" class="BgArrowLeft CursorHand">
+        <i class="fas fa-arrow-left"></i>
+      </span>
+      <img class="rounded-circle" [src]="user.avatar_url" alt="asdasda" />
+      <span class="userName">{{ user.login }}</span>
+    </div>
 
-  <div
-    class="alert alert-danger fadeIn mt-5"
-    *ngIf="reposList?.length == 0"
-    role="alert"
-  >
-    <strong>There are not repositories on this Github</strong>
-  </div>
-
-  <div class="card-columns m fadeIn mt-4" *ngIf="reposList?.length > 0">
     <div
-      class="card text-white bg-secondary mb-3 CursorHand"
-      style="max-width: 18rem"
-      *ngFor="let repo of reposList"
-      (click)="GotoTimeLine(repo.commits_url)"
+      class="alert alert-danger fadeIn mt-5"
+      *ngIf="reposList?.length == 0"
+      role="alert"
     >
-      <div class="card-header"><h5>{{ repo.name }}</h5></div>
-      <div class="card-body">
-        <p class="card-title">{{ repo.description | descriptionRepo }}</p>
+      <strong>There are not repositories on this Github</strong>
+    </div>
+
+    <div class="card-columns m fadeIn mt-4" *ngIf="reposList?.length > 0">
+      <div
+        class="card text-dark bg-light mb-3 CursorHand"
+        *ngFor="let repo of reposList"
+        (click)="GotoTimeLine(repo.commits_url)"
+      >
+        <div class="card-header">
+          <h5>{{ repo.name }}</h5>
+        </div>
+        <div class="card-body">
+          <p class="card-title">{{ repo.description | descriptionRepo }}</p>
+        </div>
       </div>
     </div>
   </div>

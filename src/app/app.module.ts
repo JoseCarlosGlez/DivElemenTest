@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { AuthGithubService } from './services/AuthGithub/auth-github.service';
+import { AuthGithubService } from './services/Interceptors/auth-github.service';
 import { NgrxModule } from './Ngrx/ngrx.module';
 import { ComponentsModule } from './components/components.module';
 import { AppRoutingModule } from './app.routing.module';

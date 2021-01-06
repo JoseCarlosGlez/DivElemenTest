@@ -1,6 +1,4 @@
 import { ActionReducerMap } from '@ngrx/store';
-import { UserInformation } from '../Models/User.model';
-import { GithubInformationReducer } from './Reducers/GithubInformation.reducer';
 import * as GI from './Reducers/GithubInformation.reducer';
 import * as RI from './Reducers/RepoInformation.reducer';
 import * as Load from './Reducers/loading.reducers';
