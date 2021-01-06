@@ -1,7 +1,7 @@
 import { createAction, props } from '@ngrx/store';
-import { UserInformation } from 'src/app/Models/User.model';
+import { IUserInformation } from 'src/app/interfaces/UserInformation.interface';
 
 export const setUserName = createAction(
   '[Github Information] userName Setted',
-  props<{ UserGithub: UserInformation }>()
+  props<{ UserGithub: IUserInformation }>()
 );

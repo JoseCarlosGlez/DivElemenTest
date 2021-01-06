@@ -20,11 +20,11 @@
       class="card text-white bg-secondary mb-3 CursorHand"
       style="max-width: 18rem"
       *ngFor="let repo of reposList"
-      (click)="GotoTimeLine(repo.git_commits_url)"
+      (click)="GotoTimeLine(repo.commits_url)"
     >
-      <div class="card-header">{{ repo.name }}</div>
+      <div class="card-header"><h5>{{ repo.name }}</h5></div>
       <div class="card-body">
-        <h5 class="card-title">{{ repo.description | descriptionRepo }}</h5>
+        <p class="card-title">{{ repo.description | descriptionRepo }}</p>
       </div>
     </div>
   </div>

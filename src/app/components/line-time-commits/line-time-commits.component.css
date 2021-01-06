@@ -1,5 +1,4 @@
 .timeline {
-  display: flex;
   position: relative;
   margin: 50px auto;
   padding: 40px 0;
@@ -41,7 +40,7 @@
   clear: both;
 }
 .content {
-  padding-bottom: 5px;
+  padding-bottom: 10px;
 }
 
 .timeline ul li:nth-child(odd):before {

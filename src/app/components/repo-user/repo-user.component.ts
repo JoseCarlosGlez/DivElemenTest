@@ -3,9 +3,11 @@ import { Component, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
-import { map, switchMap, tap } from 'rxjs/operators';
+import { map, mergeMap, tap } from 'rxjs/operators';
+import { ICommitInformation } from 'src/app/interfaces/commitInformation.interface';
 import { IRepoInformation } from 'src/app/interfaces/RepoInformation.interface';
 import { UserInformation } from 'src/app/Models/User.model';
+import { setCommit } from 'src/app/Ngrx/Actions/commitsInformation.actions';
 import { unsetRepoUser } from 'src/app/Ngrx/Actions/RepoInformation.actions';
 import { AppState } from 'src/app/Ngrx/app.reducers';
 import { GithubApiService } from 'src/app/services/GithubApi/github-api.service';
@@ -32,15 +34,16 @@ export class RepoUserComponent implements OnDestroy {
       .select('RI', 'repos')
       .pipe(
         map((repo: any) => (this.reposList = repo)),
-        switchMap(() =>
-          this._store.select('GI').pipe(map((user) => (this.user = user)))
+        mergeMap(() =>
+          this._store
+            .select('GI', 'UserGithub')
+            .pipe(map((user) => (this.user = user)))
         )
       )
       .subscribe();
   }
 
   ngOnDestroy(): void {
-    this._store.dispatch(unsetRepoUser());
     this.getstore().unsubscribe();
   }
 
@@ -49,6 +52,12 @@ export class RepoUserComponent implements OnDestroy {
   }
 
   GotoTimeLine(git_commits_url: string) {
-    this._gs.GetCommitsFromGithub(git_commits_url).subscribe(console.log);
+    this._gs
+      .GetCommitsFromGithub(git_commits_url)
+      .subscribe((Commits: ICommitInformation[]) => {
+        this._store.dispatch(setCommit({ CommitRepo: Commits }));
+      });
+
+    this._router.navigate(['commit']);
   }
 }

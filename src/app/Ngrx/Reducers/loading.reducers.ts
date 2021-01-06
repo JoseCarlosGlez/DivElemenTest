@@ -2,7 +2,7 @@ import { state } from '@angular/animations';
 import { createReducer, on } from '@ngrx/store';
 import { IsLoaded, IsLoading } from '../Actions/loading.actions';
 
-interface State {
+export interface State {
   loading: boolean;
 }
 

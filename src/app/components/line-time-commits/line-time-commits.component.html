@@ -2,23 +2,19 @@
   <div class="jumbotron">
     <div class="timeline">
       <ul>
-        <li *ngFor="let items of items">
+        <li *ngFor="let commit of commits">
           <div class="content">
-            <h3>Lorem, ipsum dolor.</h3>
+            <h3>{{ commit.author.name }}</h3>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente
-              ratione, excepturi suscipit magni iure id nesciunt quas veniam.
-              Eveniet voluptate vero quod, recusandae sunt alias minus assumenda
-              fuga laudantium maxime tempore id, ad blanditiis quae? Modi,
-              necessitatibus officia facere consequuntur autem voluptatibus,
-              incidunt veniam dolore enim dicta reprehenderit animi maxime.
+              {{ commit.message }}
             </p>
           </div>
           <div class="time">
-            <p>January 2018</p>
+            <p>{{ commit.author.date | date }}</p>
           </div>
         </li>
       </ul>
+      <div style="clear: both"></div>
     </div>
   </div>
 </div>

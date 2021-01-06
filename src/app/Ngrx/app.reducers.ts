@@ -1,16 +1,21 @@
 import { ActionReducerMap } from '@ngrx/store';
-import { IRepoInformation } from '../interfaces/RepoInformation.interface';
-import { RepoInformation } from '../Models/Repo.model';
 import { UserInformation } from '../Models/User.model';
 import { GithubInformationReducer } from './Reducers/GithubInformation.reducer';
-import * as RIR from './Reducers/RepoInformation.reducer';
+import * as GI from './Reducers/GithubInformation.reducer';
+import * as RI from './Reducers/RepoInformation.reducer';
+import * as Load from './Reducers/loading.reducers';
+import * as CI from './Reducers/commitsInformation.reducer';
 
 export interface AppState {
-  GI: UserInformation;
-  RI: RIR.State;
+  GI: GI.State;
+  RI: RI.State;
+  Loading: Load.State;
+  CI: CI.State;
 }
 
 export const appReducers: ActionReducerMap<AppState> = {
-  GI: GithubInformationReducer,
-  RI: RIR.RepoInformationReducer,
+  GI: GI.GithubInformationReducer,
+  RI: RI.RepoInformationReducer,
+  Loading: Load.RepoInformationReducer,
+  CI: CI.commitInformationReducer,
 };
