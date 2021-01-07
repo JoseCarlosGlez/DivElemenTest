@@ -23,11 +23,10 @@ export class LineTimeCommitsComponent implements OnInit {
       .select('CI', 'commits')
       .pipe(
         map((commits) => {
-          console.log(commits);
           this.commits = commits;
         })
       )
-      .subscribe(console.log);
+      .subscribe();
   }
 
   ngOnInit(): void {}

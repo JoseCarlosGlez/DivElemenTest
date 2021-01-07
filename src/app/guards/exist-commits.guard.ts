@@ -31,9 +31,6 @@ export class ExistCommitsGuard implements CanActivate {
       mergeMap((loading) =>
         this._store.select('CI').pipe(
           map(({ commits }) => {
-            console.log(commits);
-            console.log(loading);
-            console.log(commits.length > 0 && loading === false ? true : false);
             return commits.length > 0 && loading === false ? true : false;
           }),
           tap((value) => (value ? true : this._router.navigateByUrl('')))
