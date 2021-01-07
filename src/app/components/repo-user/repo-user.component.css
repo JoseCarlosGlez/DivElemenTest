@@ -39,6 +39,7 @@
 .pageContainer {
   background-color: #02010f;
   width: 100vw;
+  min-height: 100vh;
   top: 0;
   left: 0;
   position: absolute;

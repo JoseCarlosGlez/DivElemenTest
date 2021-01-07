@@ -74,7 +74,7 @@
   margin: 0;
   padding: 0%;
   font-weight: 600;
-  color: #07CF79;
+  color: #07cf79;
 }
 .timeline ul li p {
   margin: 10px 0 0;
@@ -98,4 +98,5 @@
 
 .pagecontainer {
   background: #02010f;
+  min-height: 100vh;
 }
